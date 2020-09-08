@@ -16,6 +16,18 @@ def numpy_fun(matrix_values: list):
     prod_array = numpy.prod(sum_array)
     return prod_array
 
+def numpy_min(matrix_values: list):
+    print(numpy.min(matrix_values, axis=0))
+    print(numpy.min(matrix_values, axis=1))
+    print(numpy.min(matrix_values, axis=None))
+    print(numpy.min(matrix_values))
+
+def numpy_max(matrix_values: list):
+    print(numpy.max(matrix_values, axis=0))
+    print(numpy.max(matrix_values, axis=1))
+    print(numpy.max(matrix_values, axis=None))
+    print(numpy.max(matrix_values))
+
 ################# example: #################
 
 examples_list = [[1, 2], [3, 4]]
