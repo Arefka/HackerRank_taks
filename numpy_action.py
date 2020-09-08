@@ -9,6 +9,7 @@ import numpy
 
 ===============================================================
 '''
+numpy.set_printoptions(precision=1)
 
 def numpy_fun(matrix_values: list):
     my_array = numpy.array(matrix_values)
@@ -46,7 +47,12 @@ def numpy_std(matrix_values: list):
     print(numpy.std(matrix_values, axis=None))
     print(numpy.std(matrix_values))
 
+def numpy_dot_cross(first_list: list, second_list: list):
+    print(numpy.dot(first_list, second_list))
+    print(numpy.cross(first_list, second_list))
+
 ################# example: #################
 
 examples_list = [[1, 2], [3, 4]]
 print(numpy_fun(examples_list))
+numpy_dot_cross(examples_list[0], examples_list[1])
