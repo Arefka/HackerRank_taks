@@ -51,8 +51,13 @@ def numpy_dot_cross(first_list: list, second_list: list):
     print(numpy.dot(first_list, second_list))
     print(numpy.cross(first_list, second_list))
 
+def numpy_inner_outer(first_list: list, second_list: list):
+    print(numpy.inner(first_list, second_list))
+    print(numpy.outer(first_list, second_list))
+
 ################# example: #################
 
 examples_list = [[1, 2], [3, 4]]
-print(numpy_fun(examples_list))
-numpy_dot_cross(examples_list[0], examples_list[1])
+#print(numpy_fun(examples_list))
+#numpy_dot_cross(examples_list[0], examples_list[1])
+numpy_inner_outer(examples_list[0], examples_list[1])
