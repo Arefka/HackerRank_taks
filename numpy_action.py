@@ -28,8 +28,25 @@ def numpy_max(matrix_values: list):
     print(numpy.max(matrix_values, axis=None))
     print(numpy.max(matrix_values))
 
+def numpy_mean(matrix_values: list):
+    print(numpy.mean(matrix_values, axis=0))
+    print(numpy.mean(matrix_values, axis=1))
+    print(numpy.mean(matrix_values, axis=None))
+    print(numpy.mean(matrix_values))
+
+def numpy_var(matrix_values: list):
+    print(numpy.var(matrix_values, axis=0))
+    print(numpy.var(matrix_values, axis=1))
+    print(numpy.var(matrix_values, axis=None))
+    print(numpy.var(matrix_values))
+
+def numpy_std(matrix_values: list):
+    print(numpy.std(matrix_values, axis=0))
+    print(numpy.std(matrix_values, axis=1))
+    print(numpy.std(matrix_values, axis=None))
+    print(numpy.std(matrix_values))
+
 ################# example: #################
 
 examples_list = [[1, 2], [3, 4]]
 print(numpy_fun(examples_list))
-
