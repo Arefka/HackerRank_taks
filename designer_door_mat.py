@@ -52,6 +52,10 @@ def door_mat(n_value: int, m_value: int):
         dash_count = middle_horizontally_point - (j * 3) - 2
         print(('-' * dash_count) + ('.|.' * j) + '.|.' + ('.|.' * j) + ('-' * dash_count))
 
+def door_mat_second_variant(n_value: int, m_value: int):
+    temple = [('.|.' * (2 * i + 1)).center(m_value, '-') for i in range(n_value // 2)]
+    print('\n'.join(temple + ['WELCOME'.center(m_value, '-')] + temple[::-1]))
+
 ################# example: #################
 
 first_example = [7, 21]
@@ -59,3 +63,6 @@ second_examle = [11, 33]
 
 door_mat(first_example[0], first_example[1])
 door_mat(second_examle[0], second_examle[1])
+
+door_mat_second_variant(first_example[0], first_example[1])
+door_mat_second_variant(second_examle[0], second_examle[1])
