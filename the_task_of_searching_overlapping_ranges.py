@@ -28,12 +28,63 @@
 
     Ok, we have no information about limit value of the sequence, but we should develop a universal algorithm. How can we do it?
 
-    Why don't we define the limit value as a biggest value of input ranges.
+    Why don't we define the limit value as a biggest value of input ranges?
     For example, if we are going to think about months and the biggest value in input ranges
-    is 28 (elements of input array like this [20, 28], [3, 7], [5, 15]) - we can gas that our month can be a february.
-    So, if the biggest value in input ranges in 31 (for example, [31, 5], [4, 10], [12, 15]) we can gas that our month
+    is 28 (elements of input array like this [20, 28], [3, 7], [5, 15]) - we can guess  that our month can be a february.
+    So, if the biggest value in input ranges is 31 (for example, [31, 5], [4, 10], [12, 15]) we can guess that our month
     can be the one of this months [January, March, May, July, August, October, December].
+    And if the biggest value in input ranges is 15 - so let's imaging some entity with diapason from 1 to 15 number.
 
+    So, our function should be able to do this actions:
+    - it takes input ranges array and find the biggest value;
+    - it takes from each range it's item values;
+    - it calculates the count of overlapping ranges.
+
+    In pseudocode it can be something like this:
+    our_function(input_array: array) {
+        int N = 0;
+        list_of_ranges_sets = new list();
+        results_count_set = new set();
+
+        // let's find the biggest value:
+        for (each_range in input_array) do {
+            if start_point > N then N = start_point
+            if endpoint > N then N = endpoint
+        }
+
+        // let's create a list of ranges sets:
+        for (each_range in input_array) do {
+            if (start_point <= endpoint) then {
+                // this is a case like [1, 10]
+                for (item in range(start_point, endpoint)) do {
+                    list_of_ranges_sets[each_range].Add(item);
+                }
+            }
+            else {
+                // this is a case like [25, 10]
+                for (item in range(endpoint, N)) do {
+                    list_of_ranges_sets[each_range].Add(item);
+                }
+                for (item in range(1, start_point)) do {
+                    list_of_ranges_sets[each_range].Add(item);
+                }
+            }
+        }
+
+        // let's calculate the count of overlapping ranges:
+        for (first_counter in range(0, len(list_of_ranges_sets)) do {
+            for (second_counter in range(first_counter, len(list_of_ranges_sets))) do {
+                first = list_of_ranges_sets[first_counter]
+                second = list_of_ranges_sets[second_counter]
+                if (len(intersection_of _sets(first, second)) > 0) then {
+                    results_count_set.Add(first)
+                    results_count_set.Add(second)
+                }
+            }
+        }
+
+        return len(results_count_set)
+    }
 
 ===============================================================
 '''
