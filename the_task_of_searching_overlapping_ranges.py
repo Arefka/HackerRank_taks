@@ -15,7 +15,7 @@
     - the second case is about situation, when one range is a sub-range of another. Something like this [4, 5] and [1, 9].
     In this case we should check start point and endpoint of each sequence to find a fact of inclusion it in another sequence.
 
-    It's easy to imaging two this cases with classing segments in the OX system.
+    It's easy to imaging two this cases with classic segments in the OX system.
 
     But there is the third case like this [5, 9], [27, 6]. To my mind, it's not easy to understand - how can the range be minus.
 
@@ -29,11 +29,11 @@
     Ok, we have no information about limit value of the sequence, but we should develop a universal algorithm. How can we do it?
 
     Why don't we define the limit value as a biggest value of input ranges?
-    For example, if we are going to think about months and the biggest value in input ranges
+    For example, if we are going to think about months and the biggest value of input ranges
     is 28 (elements of input array like this [20, 28], [3, 7], [5, 15]) - we can guess  that our month can be a february.
-    So, if the biggest value in input ranges is 31 (for example, [31, 5], [4, 10], [12, 15]) we can guess that our month
+    So, if the biggest value of input ranges is 31 (for example, [31, 5], [4, 10], [12, 15]) we can guess that our month
     can be the one of this months [January, March, May, July, August, October, December].
-    And if the biggest value in input ranges is 15 - so let's imaging some entity with diapason from 1 to 15 number.
+    And if the biggest value of input ranges is 15 - so let's imaging some entity with diapason from 1 to 15 number.
 
     So, our function should be able to do this actions:
     - it takes input ranges array and find the biggest value;
@@ -88,4 +88,41 @@
 
 ===============================================================
 '''
+def count_overlapping_ranges(ranges_list: list) -> int:
+    biggest_value = 1
+    list_of_ranges_sets = []
+    overlapping_list = []
+
+    for each_range in ranges_list:
+        if each_range[0] > biggest_value:
+            biggest_value = each_range[0]
+        if each_range[1] > biggest_value:
+            biggest_value = each_range[1]
+
+    for each_range in ranges_list:
+        if (each_range[0] <= each_range[1]):
+            list_of_ranges_sets.append(set())
+            for number in range(each_range[0], each_range[1]+1):
+                list_of_ranges_sets[len(list_of_ranges_sets) - 1].add(number)
+        else:
+            list_of_ranges_sets.append(set())
+            for number in range(1, each_range[1]+1):
+                list_of_ranges_sets[len(list_of_ranges_sets) - 1].add(number)
+            for number in range(each_range[0], biggest_value + 1):
+                list_of_ranges_sets[len(list_of_ranges_sets) - 1].add(number)
+
+    for num in range(len(list_of_ranges_sets) - 1):
+        for item in list_of_ranges_sets[num + 1:]:
+            if len(list_of_ranges_sets[num].intersection(item)) > 0:
+                if list_of_ranges_sets[num] not in overlapping_list:
+                    overlapping_list.append(list_of_ranges_sets[num])
+                if item not in overlapping_list:
+                    overlapping_list.append(item)
+
+    return len(overlapping_list)
+
+################# example: #################
+
+ranges_list = [[3, 5], [6, 9], [8, 15], [16, 2], [18, 2]]
+print(count_overlapping_ranges(ranges_list))
 
