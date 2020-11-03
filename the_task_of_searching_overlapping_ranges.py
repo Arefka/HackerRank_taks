@@ -88,6 +88,7 @@
 
 ===============================================================
 '''
+
 def count_overlapping_ranges(ranges_list: list) -> int:
     biggest_value = 1
     list_of_ranges_sets = []
@@ -102,7 +103,7 @@ def count_overlapping_ranges(ranges_list: list) -> int:
     for each_range in ranges_list:
         if (each_range[0] <= each_range[1]):
             list_of_ranges_sets.append(set())
-            for number in range(each_range[0], each_range[1]+1):
+            for number in range(each_range[0], each_range[1] + 1):
                 list_of_ranges_sets[len(list_of_ranges_sets) - 1].add(number)
         else:
             list_of_ranges_sets.append(set())
@@ -123,6 +124,9 @@ def count_overlapping_ranges(ranges_list: list) -> int:
 
 ################# example: #################
 
-ranges_list = [[3, 5], [6, 9], [8, 15], [16, 2], [18, 2]]
-print(count_overlapping_ranges(ranges_list))
-
+first_ranges_list = [[3, 5], [6, 9], [8, 15], [16, 2], [18, 2]]
+#second_range_list = [[10, 15], [14, 20], [1, 5]]
+#third_range_list = [[1, 5], [12, 20], [10, 22], [21, 25]]
+print(count_overlapping_ranges(first_ranges_list))
+#print(count_overlapping_ranges(second_range_list))
+#print(count_overlapping_ranges(third_range_list))
